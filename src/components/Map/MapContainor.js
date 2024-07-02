@@ -1,9 +1,9 @@
 import React from 'react';
-import './MapControls.css';
+import './components/Map/MapControls/MapControls.css';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import Layers from './Layers
-import MapControls from '../MapControls/MapControls';
+import Layers from '.components/Map/Layers'
+import MapControls from './components/Map/MapControls/MapControls.js';
 
 function Map() {
   return (

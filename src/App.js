@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import MapContainer from './components/Map/MapContainer';
+import 'leaflet/dist/leaflet.css';
 
 function App() {
   return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMap } from 'react-leaflet';
+import './MapControls.css';
 
 function MapControls() {
   const map = useMap();

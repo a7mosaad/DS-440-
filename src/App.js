@@ -1,18 +1,14 @@
-import React from 'react';
 import './App.css';
-import MapContainer from './components/Map/MapContainer';
-import 'leaflet/dist/leaflet.css';
+import { GeoDataProvider } from './GeoDataContext';
+import MapComponent from './comps/MapComponent';
+import DataFetcher from './comps/DataFetcher';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>My Map App</h1>
-      </header>
-      <main>
-        <MapContainer />
-      </main>
-    </div>
+    <GeoDataProvider>
+      <DataFetcher />
+      <MapComponent />
+    </GeoDataProvider>
   );
 }
 

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { GeoJSON, useMap } from 'react-leaflet';
 import { GeoDataContext } from '../GeoDataContext';
+import L from 'leaflet';
 
 const OverlayComponent = () => {
   const { geojsonData } = useContext(GeoDataContext);

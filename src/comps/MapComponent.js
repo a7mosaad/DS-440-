@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import { GeoDataContext } from '../GeoDataContext';
 import OverlayComponent from './OverlayComponent';
+import useFetchGeoData from './useFetchGeoData';
 
 // Define the geographical bounds of the USA
 const usaBounds = [
@@ -11,25 +10,30 @@ const usaBounds = [
 ];
 
 const MapComponent = () => {
-  const { geojsonData } = useContext(GeoDataContext);
+  // Custom hook to fetch GeoJSON data
+  useFetchGeoData();
 
   return (
+    
     <MapContainer
       center={[39.8283, -98.5795]}
       zoom={5}
-      minZoom={5} // Set the minimum zoom level to restrict zooming out
-      maxZoom={8} // Optional: Set the maximum zoom level if needed
+      minZoom={4} // Set the minimum zoom level to restrict zooming out
+      maxZoom={9} // Optional: Set the maximum zoom level if needed
       style={{ height: '100vh', width: '100%' }}
       maxBounds={usaBounds}
       maxBoundsViscosity={1.0}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution="&copy; OpenStreetMap contributors"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      {geojsonData && <OverlayComponent />}
+      <OverlayComponent />
     </MapContainer>
   );
 };
 
 export default MapComponent;
+
+
+

@@ -1,37 +1,42 @@
-import React, { useContext } from 'react';
-import { GeoJSON, useMap } from 'react-leaflet';
-import { GeoDataContext } from '../GeoDataContext';
+import { useEffect } from 'react';
+import {  useMap } from 'react-leaflet';
+import { useGeoData } from '../GeoDataContext';
 import L from 'leaflet';
 
 const OverlayComponent = () => {
-  const { geojsonData } = useContext(GeoDataContext);
+  const { geojsonData } = useGeoData();
   const map = useMap();
 
-  const onEachFeature = (feature, layer) => {
-    if (feature.properties && feature.properties.site) {
-      layer.bindPopup(feature.properties.site);
+  useEffect(() => {
+    if (geojsonData) {
+      const geoJsonLayer = L.geoJson(geojsonData, {
+        style: {
+          color: 'red',
+          weight: 2,
+          opacity: 0.6,
+          fillColor: 'red',
+          fillOpacity: 0.2,
+        },
+        onEachFeature: (feature, layer) => {
+          if (feature.properties && feature.properties.site) {
+            layer.bindPopup(feature.properties.site);
+          }
+        },
+      });
+
+      map.fitBounds(geoJsonLayer.getBounds());
+
+      // Clear existing layers and add the new one
+      map.eachLayer((layer) => {
+        if (layer instanceof L.GeoJSON) {
+          map.removeLayer(layer);
+        }
+      });
+
+      geoJsonLayer.addTo(map);
     }
-  };
-
-  const geojsonStyle = {
-    color: 'red',
-    weight: 2,
-    opacity: 0.6,
-    fillColor: 'red',
-    fillOpacity: 0.2
-  };
-
-  console.log('OverlayComponent received GeoJSON data:', geojsonData); // Debug log
-
-  if (geojsonData) {
-    // Fit the map bounds to the GeoJSON layer bounds
-    const geoJsonLayer = L.geoJson(geojsonData);
-    map.fitBounds(geoJsonLayer.getBounds());
-  }
-
-  return geojsonData ? (
-    <GeoJSON data={geojsonData} style={geojsonStyle} onEachFeature={onEachFeature} />
-  ) : null;
+  }, [geojsonData, map]);
+  return null;
 };
 
 export default OverlayComponent;

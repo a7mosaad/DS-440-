@@ -54,5 +54,5 @@ for ob in response:
     geojson_wdata["features"].append(feature)
 
 # Save the geojson_data to a file
-with open("/users/ahmedmosaad/documents/skyedge/MY-MAP/warnings.geojson", "w") as f:
+with open("./public/warnings.geojson", "w") as f:
     json.dump(geojson_wdata, f)

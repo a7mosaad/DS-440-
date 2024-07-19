@@ -5,7 +5,7 @@ const useFetchGeoData = () => {
   const { setGeojsonData } = useGeoData();
 
   useEffect(() => {
-    fetch('C:/Users/640116/Documents/skedge/warnings_24_to_12_hours_ago.geojson')
+    fetch('/warnings.geojson')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import {  useMap } from 'react-leaflet';
-import { useGeoData } from '../GeoDataContext';
+import { useGeoData } from './GeoDataContext';
 import L from 'leaflet';
 
 const OverlayComponent = () => {

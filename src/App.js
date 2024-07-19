@@ -1,5 +1,5 @@
 import './App.css';
-import { GeoDataProvider } from './GeoDataContext';
+import { GeoDataProvider } from './comps/GeoDataContext';
 import MapComponent from './comps/MapComponent';
 
 const App = () => {

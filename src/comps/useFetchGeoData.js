@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useGeoData } from '../GeoDataContext';
+import { useGeoData } from './GeoDataContext';
 
 const useFetchGeoData = () => {
   const { setGeojsonData } = useGeoData();

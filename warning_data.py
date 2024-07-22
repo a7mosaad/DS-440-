@@ -1,14 +1,27 @@
 from awips.dataaccess import DataAccessLayer
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from dynamicserialize.dstypes.com.raytheon.uf.common.time import TimeRange
 import json
 from shapely.geometry import mapping
 
 
 DataAccessLayer.changeEDEXHost("edex-cloud.unidata.ucar.edu")
+
+# Define the time range from 24 to 12 hours ago using timezone-aware datetimes
+endDateTime = datetime.now(timezone.utc) - timedelta(hours=12)
+startDateTime = endDateTime - timedelta(hours=12)
+
+start = startDateTime.strftime('%Y-%m-%d %H:%M:%S')
+end = endDateTime.strftime('%Y-%m-%d %H:%M:%S')
+
+beginRange = datetime.strptime(start, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
+endRange = datetime.strptime(end, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
+timerange = TimeRange(beginRange, endRange)
+
 request = DataAccessLayer.newDataRequest()
 request.setDatatype("warning")
-params = ["phensig", "sig"]
+
+params = ["phensig", "phen", "sig", "wfo"]
 request.setParameters(*(params))
 
 

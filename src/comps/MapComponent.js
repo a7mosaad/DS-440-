@@ -5,8 +5,8 @@ import useFetchGeoData from './useFetchGeoData';
 
 // Define the geographical bounds of the USA
 const usaBounds = [
-  [24.396308, -125.0], // Southwest corner
-  [49.384358, -66.93457] // Northeast corner
+  [14.22, -60.50], // Puerto Rico
+  [71, -156] // Alaska 
 ];
 
 const MapComponent = () => {

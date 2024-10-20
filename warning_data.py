@@ -29,8 +29,6 @@ times = DataAccessLayer.getAvailableTimes(request)
 # Adjust the range to get the most recent records (using the last 250 available times)
 response = DataAccessLayer.getGeometryData(request, times[-250:])
 
-
-
 # Prepare the GeoJSON structure
 geojson_wdata = {
     "type": "FeatureCollection",
@@ -44,22 +42,23 @@ for ob in response:
     ref = ob.getDataTime().getRefTime()
 
     # Extract phensig from the response object
-    phensig = ob.getString("phensig") if ob.getString("phensig") else "Unknown"
+    phensig = ob.getString("phensig")
 
-
-
-    # Build the feature object
-    feature = {
-        "type": "Feature",
-        "geometry": mapping(poly),
-        "properties": {
-            "phensig": phensig,
-            "valid_period": str(pd),
-            "reference_time": str(ref)
+    # Only add the feature if the phensig exists
+    if phensig:
+        # Build the feature object
+        feature = {
+            "type": "Feature",
+            "geometry": mapping(poly),
+            "properties": {
+                "phensig": phensig,
+                "valid_period": str(pd),
+                "reference_time": str(ref)
+            }
         }
-    }
 
-    geojson_wdata["features"].append(feature)
+        # Add the feature to the GeoJSON structure
+        geojson_wdata["features"].append(feature)
 
 # Save the geojson_data to a file
 with open("./public/warnings.geojson", "w") as f:

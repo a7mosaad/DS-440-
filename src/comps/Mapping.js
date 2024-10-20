@@ -68,6 +68,10 @@ const eventMapping = {
     'FW.W': 'Red Flag Warning',                  // #ff4500
     'FW.A': 'Fire Weather Watch',                // #ff6347
     'FW.Y': 'Fire Weather Advisory',             // #ff8c00
+    'FZ.A': 'Freeze Watch',                      
+    'FZ.W': 'Freeze Warning', 
+    'BH.S': 'Beach Hazards Statement',
+    'RP.S': 'Rip Current Statement'
   };
 
 
@@ -86,7 +90,7 @@ const colorMapping = {
     'HW.W': 'pink',                  // High Wind Warning
     'HT.Y': 'darkorange',            // Heat Advisory
     'FR.W': 'blue',                  // Freeze Warning
-    'FR.Y': 'lightblue',             // Frost Advisory
+    'FR.Y': '#5f9ea0',             // Frost Advisory
     'FL.W': '#00ff00',               // Flood Warning
     'FL.A': '#ffff00',               // Flood Watch
     'WI.Y': '#ff69b4',               // Wind Advisory
@@ -143,9 +147,88 @@ const colorMapping = {
     'FW.W': '#ff4500',               // Red Flag Warning
     'FW.A': '#ff6347',               // Fire Weather Watch
     'FW.Y': '#ff8c00',               // Fire Weather Advisory
+    'FZ.A': '#4682B4',                //Freeze Watch                    
+    'FZ.W': '#00008B',                //Freeze Warning
+    'BH.S': '#FF7F50',                //Beach Hazards Statement
+    'RP.S': '#008080'                //Rip Current Statement
   
     
     // Add more mappings as needed
   };
 
-  export {eventMapping,colorMapping } ;
+const highPriorityEvents = [
+  'TO.W',  // Tornado Warning
+  'HU.W',  // Hurricane Warning
+  'SV.W',  // Severe Thunderstorm Warning
+  'FF.W',  // Flash Flood Warning
+  'BZ.W',  // Blizzard Warning
+  'IS.W',  // Ice Storm Warning
+  'WC.W',  // Wind Chill Warning
+  'EH.W',  // Excessive Heat Warning
+  'DS.W',  // Dust Storm Warning
+  'SS.W',  // Storm Surge Warning
+  'SR.W',  // Storm Warning
+  'TR.W',  // Tropical Storm Warning
+  'TS.W',  // Tsunami Warning
+  'HZ.W',  // Hard Freeze Warning
+  'HS.W',  // Heavy Snow Warning
+  'FW.W',  // Red Flag Warning
+  'ZF.W',  // Freezing Fog Warning
+  'MA.W',  // Marine Warning
+];
+
+
+const mediumPriorityEvents = [
+  'TO.A',  // Tornado Watch
+  'HU.A',  // Hurricane Watch
+  'SV.A',  // Severe Thunderstorm Watch
+  'FF.A',  // Flash Flood Watch
+  'BZ.A',  // Blizzard Watch
+  'WC.A',  // Wind Chill Watch
+  'EH.A',  // Excessive Heat Watch
+  'SS.A',  // Storm Surge Watch
+  'SR.A',  // Storm Watch
+  'TR.A',  // Tropical Storm Watch
+  'TS.A',  // Tsunami Watch
+  'HZ.A',  // Hard Freeze Watch
+  'FW.A',  // Fire Weather Watch
+  'FR.W',  // Freeze Warning
+  'HW.W',  // High Wind Warning
+  'WS.W',  // Winter Storm Warning
+  'LE.W',  // Lake Effect Snow Warning
+  'GL.W',  // Gale Warning
+];
+
+const lowPriorityEvents = [
+  'WI.Y',  // Wind Advisory
+  'FR.Y',  // Frost Advisory
+  'FA.Y',  // Flood Advisory
+  'WC.Y',  // Wind Chill Advisory
+  'EH.Y',  // Excessive Heat Advisory
+  'FW.Y',  // Fire Weather Advisory
+  'ZF.Y',  // Freezing Fog Advisory
+  'SC.Y',  // Special Marine Warning
+  'LE.A',  // Lake Effect Snow Watch
+  'LE.Y',  // Lake Effect Snow Advisory
+  'FL.W',  // Flood Warning
+  'FL.A',  // Flood Watch
+  'FA.A',  // Flood Watch
+  'FL.S',  // Flood Statement
+  'FF.S',  // Flash Flood Statement
+  'FR.A',  // Freeze Watch
+  'HW.A',  // High Wind Watch
+  'WS.A',  // Winter Storm Watch
+  'WW.Y',  // Winter Weather Advisory
+  'SM.W',  // Small Craft Advisory
+  'SU.W',  // High Surf Warning
+  'SU.Y',  // High Surf Advisory
+  'CF.W',  // Coastal Flood Warning
+  'CF.A',  // Coastal Flood Watch
+  'CF.Y',  // Coastal Flood Advisory
+  'WI.A',  // Wind Advisory
+  'FG.Y',  // Dense Fog Advisory
+  'LW.Y',  // Lake Wind Advisory
+  'SE.W',  // Special Weather Statement
+];
+
+  export {eventMapping,colorMapping,highPriorityEvents,mediumPriorityEvents,lowPriorityEvents } ;

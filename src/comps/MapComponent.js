@@ -6,7 +6,7 @@ import useFetchGeoData from './useFetchGeoData';
 // Define the geographical bounds of the USA
 const usaBounds = [
   [14.22, -60.50], // Puerto Rico
-  [71, -156] // Alaska 
+  [90.0, -195.0] // NW part of Alaska
 ];
 
 const MapComponent = () => {

@@ -1,3 +1,6 @@
-Run the warning.py file 
+To update the dataset with current weather warnings
 
--> npm start
+Run the warning_data.py file 
+
+Otherwise:
+npm start
